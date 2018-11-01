@@ -2,27 +2,37 @@
 #define COURSE_H
 
 #include <iostream>
-#include "resource.h"
-#include "professor.h"
-#include "students_list.h"
+#include "student.h"
 
 using namespace std;
 
-class Professor;
-class StudentsList;
+class Resource{
+friend class Student;
+protected:
+    string name;
+public:
+    Resource();
+    Resource(string);
+    virtual ~Resource();
+    virtual void display() = 0;
+};
+
+class Student;
+class User;
 class Course : public Resource{
+friend class Student;
+friend class User;
 private:
-    string _degree;
-    int _credits;
-    Professor *_professor1;
-    Professor *_professor2;
-    StudentsList *_studentsList;
-    float *_marksList;
+    int num;
+    User *myStudent;
 public:
     Course();
-    Course(string, int, string, int, Professor*, Professor*, StudentsList*);
+    Course(string,int,User*);
     ~Course();
+    Course &operator =(const Course &C);
     void display();
 };
+
+
 
 #endif // COURSE_H

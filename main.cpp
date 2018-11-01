@@ -1,25 +1,20 @@
 #include <iostream>
-#include "resource.h"
-#include "course.h"
-#include "fdp.h"
-#include "seminar.h"
-#include "user.h"
+#include <string>
 #include "student.h"
-#include "professor.h"
-#include "administrator.h"
-#include "courses_list.h"
-#include "seminars_list.h"
-#include "students_list.h"
-
-
+#include "course.h"
 using namespace std;
 
-int main()
-{
-    FDP f1;
-    CoursesList cl1;
-    SeminarsList sl1;
-    Student s1("pass","id","electr",&f1,&cl1,&sl1);
+int main(){
+
+    Resource *c2;
+    User *s1= new Student("Luis",20,c2);
+    Resource *c3= new Course("Analogica",6,s1);
+    //s1->setStudent("Luis",20,c3);
+
+    s1->display();
+    cout<<"\n";
+    //c3->display();
 
     return 0;
 }
+

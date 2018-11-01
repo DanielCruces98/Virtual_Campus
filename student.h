@@ -2,39 +2,38 @@
 #define STUDENT_H
 
 #include <iostream>
-#include "user.h"
 #include "course.h"
-#include "fdp.h"
-#include "seminar.h"
-#include "courses_list.h"
-#include "seminars_list.h"
-
 using namespace std;
 
-class Course;
-class FDP;
-class Seminar;
-class CoursesList;
-class SeminarsList;
-class Student : public User{
-private:
-    string _SIN;
-    string _degree;
-    FDP *_myFDP;
-    CoursesList *_coursesList;
-    SeminarsList *_seminarsList;
+class User{
+friend class Course;
+protected:
+    string name;
+public:
+    User();
+    User(string);
+    virtual~User();
+    virtual void display() = 0;
+};
 
+class Course;
+
+class Student : public User{
+friend class Course;
+friend class Resource;
+private:
+    int age;
+    Resource *myCourse;
 public:
     Student();
-    Student(string, string, string, FDP*, CoursesList*, SeminarsList*);
+    Student(string, int,Resource*);
     ~Student();
-    void joinCourse();
-    void joinFDP();
-    void joinSeminar();
-    void dropCourse();
-    void dropFDP();
-    void dropSeminar();
+    Student &operator =(const Student &S);
+    void setStudent(string,int,Course*);
+    void display();
 
 };
+
+
 
 #endif // STUDENT_H
